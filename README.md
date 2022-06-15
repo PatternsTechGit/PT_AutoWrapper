@@ -105,6 +105,12 @@ export interface ValidationError {
 
 Go to `line-graph-data.ts` file and here We will create a new interface `LineGraphDataResponse` which will be extending  `ApiResponse` interface. We will use LineGraphDataResponse class for receiving uniform response specifically for `LineGraphData`.
 
+```ts
+export interface LineGraphDataResponse extends ApiResponse {
+  result: LineGraphData
+}
+```
+
 ## Step 3 : Update TransactionService class
 
 We will be replacing `LineGraphData` with `LineGraphDataResponse` in getLast12MonthBalances returned observable type as well as in `httpClient` get request as below :
@@ -120,7 +126,7 @@ We will be replacing `LineGraphData` with `LineGraphDataResponse` in getLast12Mo
 
 ## Step 4 : Update DashboardComponent
 
-Go to `DashboardComponent.ts` and change lineGraphData  response received  `data.result` as below :
+Go to `DashboardComponent.ts` and set the received response in  `lineGraphData` from `data.result`. Also we will be using `error.responseException.exceptionMessage` which will contains the error message if any... 
 
 ```ts
 this.transactionService
